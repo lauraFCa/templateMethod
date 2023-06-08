@@ -9,7 +9,10 @@ public abstract class Requisicao {
     }
 
     public String RealizarPOST(){
-        return "Resposta do request\nPOST - " + endpoint() + "\nBody: " + conteudo();
+        if(conteudo() != null)
+            return "Resposta do request\nPOST - " + endpoint() + "\nBody: " + conteudo();
+
+        return null;
     }
 
 }

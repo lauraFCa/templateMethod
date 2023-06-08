@@ -13,8 +13,20 @@ public class RequisicaoTests {
     }
 
     @Test
+    void naoDeveRetornarGetMusica(){
+        RequisicaoMusica req = new RequisicaoMusica("nome-musica", null);
+        assertEquals(null, req.RealizarPOST());
+    }
+
+    @Test
     void deveRetornarPostPlaylist(){
-        RequisicaoPlaylist req = new RequisicaoPlaylist("", "Nome: Playlist01; Musicas: [Musica1, Musica2]");
-        assertEquals("Resposta do request\nPOST - spotify.playlists/api/\nBody: Nome: Playlist01; Musicas: [Musica1, Musica2]", req.RealizarPOST());
+        RequisicaoPlaylist req = new RequisicaoPlaylist("new", "Nome: Playlist01; Musicas: [Musica1, Musica2]");
+        assertEquals("Resposta do request\nPOST - spotify.playlists/api/new\nBody: Nome: Playlist01; Musicas: [Musica1, Musica2]", req.RealizarPOST());
+    }
+
+    @Test
+    void deveRetornarGetPlaylist(){
+        RequisicaoPlaylist req = new RequisicaoPlaylist("nome-playlist", "conteudo nao usado");
+        assertEquals("Resposta do request\nGET - spotify.playlists/api/nome-playlist", req.RealizarGET());
     }
 }
